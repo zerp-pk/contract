@@ -18,7 +18,7 @@ class MarketplaceSettingSeeder extends Seeder
             $files = File::files($marketplaceDir);
             foreach ($files as $file) {
                 if (in_array($file->getExtension(), ['png', 'jpg', 'jpeg', 'gif', 'webp'])) {
-                    $screenshots[] = '/packages/workdo/Contract/src/marketplace/' . $file->getFilename();
+                    $screenshots[] = '/packages/local/Contract/src/marketplace/' . $file->getFilename();
                 }
             }
         }
@@ -33,7 +33,7 @@ class MarketplaceSettingSeeder extends Seeder
                 'sections' => [
                     'hero' => [
                         'variant' => 'hero1',
-                        'title' => 'Contract Module for ERPGo SaaS',
+                        'title' => 'Contract Module for Zerp',
                         'subtitle' => 'Streamline your contract workflow with comprehensive tools and automated management.',
                         'primary_button_text' => 'Install Contract Module',
                         'primary_button_link' => '#install',
@@ -55,19 +55,19 @@ class MarketplaceSettingSeeder extends Seeder
                                 'title' => 'Contract Creation & Management',
                                 'description' => 'Comprehensive contract creation system with advanced management capabilities for complete lifecycle tracking. Streamlined contract organization ensures efficient workflow management and easy access to all contract information.',
                                 'keyPoints' => ['Create and manage contracts', 'Contract type categorization', 'Value and date tracking', 'Status management system'],
-                                'screenshot' => '/packages/workdo/Contract/src/marketplace/image1.png'
+                                'screenshot' => '/packages/local/Contract/src/marketplace/image1.png'
                             ],
                             [
                                 'title' => 'Digital Signatures & Authentication',
                                 'description' => 'Advanced digital signature system with secure authentication and verification capabilities for legal compliance. Electronic signature collection ensures document integrity and provides audit trails for complete transparency.',
                                 'keyPoints' => ['Digital signature collection', 'Secure authentication system', 'Signature verification process', 'Legal compliance features'],
-                                'screenshot' => '/packages/workdo/Contract/src/marketplace/image2.png'
+                                'screenshot' => '/packages/local/Contract/src/marketplace/image2.png'
                             ],
                             [
                                 'title' => 'Contract Renewals & Lifecycle',
                                 'description' => 'Automated contract renewal management with comprehensive lifecycle tracking and notification systems. Advanced renewal workflows ensure timely contract updates and prevent expiration-related issues.',
                                 'keyPoints' => ['Automated renewal tracking', 'Lifecycle management system', 'Renewal notification alerts', 'Contract expiration monitoring'],
-                                'screenshot' => '/packages/workdo/Contract/src/marketplace/image3.png'
+                                'screenshot' => '/packages/local/Contract/src/marketplace/image3.png'
                             ],
                              
                         ]

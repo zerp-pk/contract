@@ -1,6 +1,6 @@
 {
     "name": "zerp/contract",
-    "description": "Description for contract package",
+    "description": "Contract management module for the Zerp ERP platform",
     "type": "library",
     "license": "MIT",
     "require": {},
