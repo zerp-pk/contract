@@ -3,6 +3,7 @@
 namespace Zerp\Contract\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\MediaAttachmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,13 +26,25 @@ class ContractAttachmentController extends Controller
 
             foreach ($mediaPaths as $mediaPath) {
                 if (!empty($mediaPath)) {
+                    $fileName = basename($mediaPath);
+                    $media = MediaAttachmentService::resolveOrBackfill(
+                        $fileName,
+                        Contract::class,
+                        $contract->id,
+                        'contract_attachments',
+                        Auth::id(),
+                        creatorId(),
+                        MediaAttachmentService::ensureDirectory('Contract Attachments', creatorId(), Auth::id())
+                    );
+
                     ContractAttachment::create([
                         'contract_id' => $contract->id,
-                        'file_name' => basename($mediaPath),
-                        'file_path' => basename($mediaPath),
+                        'file_name' => $fileName,
+                        'file_path' => $fileName,
                         'uploaded_by' => Auth::id(),
                         'creator_id' => Auth::id(),
                         'created_by' => creatorId(),
+                        'media_id' => $media?->id,
                     ]);
                 }
             }
@@ -45,8 +58,10 @@ class ContractAttachmentController extends Controller
     public function destroy(ContractAttachment $attachment)
     {
         if (Auth::user()->can('delete-contract-attachments')) {
-            // Delete the physical file if it exists
-            if ($attachment->file_path && Storage::exists($attachment->file_path)) {
+            if ($attachment->media_id && $attachment->media) {
+                MediaAttachmentService::deleteMedia($attachment->media);
+            } elseif ($attachment->file_path && Storage::exists($attachment->file_path)) {
+                // Legacy pre-migration row with no linked Media record.
                 Storage::delete($attachment->file_path);
             }
 

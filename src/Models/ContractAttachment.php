@@ -15,6 +15,7 @@ class ContractAttachment extends Model
         'uploaded_by',
         'creator_id',
         'created_by',
+        'media_id',
     ];
 
     public function contract(): BelongsTo
@@ -25,5 +26,10 @@ class ContractAttachment extends Model
     public function uploader(): BelongsTo
     {
         return $this->belongsTo(User::class, 'uploaded_by');
+    }
+
+    public function media(): BelongsTo
+    {
+        return $this->belongsTo(\Spatie\MediaLibrary\MediaCollections\Models\Media::class, 'media_id');
     }
 }
