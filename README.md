@@ -13,13 +13,13 @@ Contract module for the [Zerp](https://github.com/zerp-pk) ERP platform. Contrac
 composer require zerp/contract
 ```
 
-The package auto-registers via Laravel's package discovery — no manual service provider registration needed.
+The package auto-registers via Laravel's package discovery - no manual service provider registration needed.
 
 ## What it provides
 
-- `Zerp\Contract\Providers\ContractServiceProvider` — boots this module's routes, migrations, and settings
+- `Zerp\Contract\Providers\ContractServiceProvider` - boots this module's routes, migrations, and settings
 - Frontend pages/components under `src/Resources/js`
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
